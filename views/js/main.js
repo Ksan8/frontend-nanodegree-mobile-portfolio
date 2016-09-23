@@ -378,7 +378,7 @@ var pizzaElementGenerator = function(i) {
   pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
   pizzaImageContainer.style.width="35%";
 
-  pizzaImage.src = "images/pizza-med.png";
+  pizzaImage.src = "images/pizza-large.png";
   pizzaImage.classList.add("img-responsive");
   pizzaImageContainer.appendChild(pizzaImage);
   pizzaContainer.appendChild(pizzaImageContainer);
@@ -526,21 +526,21 @@ function updatePositions() {
 window.addEventListener('scroll', requestAnimationFrame(updatePositions));
 
 // Generates the sliding pizzas when the page loads.
-document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "images/pizza-med.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
-  }
-  requestAnimationFrame(updatePositions);
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//   var cols = 8;
+//   var s = 256;
+//   for (var i = 0; i < 200; i++) {
+//     var elem = document.createElement('img');
+//     elem.className = 'mover';
+//     elem.src = "images/pizza-xs.png";
+//     elem.style.height = "100px";
+//     elem.style.width = "73.333px";
+//     elem.basicLeft = (i % cols) * s;
+//     elem.style.top = (Math.floor(i / cols) * s) + 'px';
+//     document.querySelector("#movingPizzas1").appendChild(elem);
+//   }
+//   requestAnimationFrame(updatePositions);
+// });
 
 // requestAnimationFrame polyfill (https://gist.github.com/paulirish/1579671)
 (function() {

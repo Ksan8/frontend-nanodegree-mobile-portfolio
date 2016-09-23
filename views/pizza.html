@@ -107,7 +107,7 @@
         <div id="randomPizzas" class="row">
           <div id="pizza0" class="randomPizzaContainer" style="width:33.33%; height: 325px;">
             <div style="width:35%">
-              <img src="images/pizza-med.png" class="img-responsive">
+              <img src="images/pizza-large.png" class="img-responsive">
             </div>
             <div style="width:65%">
               <h4>The Udacity Special</h4>
@@ -124,7 +124,7 @@
           </div>
           <div id="pizza1" class="randomPizzaContainer" style="width:33.33%; height: 325px;">
             <div style="width:35%">
-              <img src="images/pizza-med.png" class="img-responsive">
+              <img src="images/pizza-large.png" class="img-responsive">
             </div>
             <div style="width:65%">
               <h4>The Cameron Special</h4>
@@ -140,6 +140,38 @@
     </div>
     <div id="footer" class="col-md-12">Thanks for visiting! &copy; 2014 Udacity</div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var cols = 8;
+      var s = 256;
+      for (var i = 0; i < 200; i++) {
+        var elem = document.createElement('img');
+        elem.className = 'mover';
+        elem.src = "images/pizza-xs.png";
+        elem.style.height = "100px";
+        elem.style.width = "73.333px";
+        elem.basicLeft = (i % cols) * s;
+        elem.style.top = (Math.floor(i / cols) * s) + 'px';
+        document.querySelector("#movingPizzas1").appendChild(elem);
+      }
+      requestAnimationFrame(updatePositions);
+    });
+  </script>
+
+  <!-- <script type="text/javascript">
+    // defer javascript
+    function downloadJSAtOnload() {
+      var element = document.createElement("script");
+      element.src = "js/main.js";
+      document.body.appendChild(element);
+    }
+    if (window.addEventListener)
+      window.addEventListener("load", downloadJSAtOnload, false);
+    else if (window.attachEvent)
+      window.attachEvent("onload", downloadJSAtOnload);
+    else window.onload = downloadJSAtOnload;
+  </script> -->
   <script type="text/javascript" src="js/main.js"></script>
 </body>
 
