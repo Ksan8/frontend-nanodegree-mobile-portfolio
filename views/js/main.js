@@ -503,13 +503,17 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.getElementsByClassName('mover');
+  var allPizzas = [];
   var factor1 = document.body.scrollTop / 1250;  // optimization: made this a variable outside loop
+  var pizzaLength = items.length;
 
-
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < pizzaLength; i++) {
     var phase = Math.sin(factor1 + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    allPizzas.push(phase);
+  }
+
+  for (var j = 0; j < pizzaLength; j++) {
+    items[j].style.left = items[j].basicLeft + 100 * allPizzas[j] + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -525,22 +529,25 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', requestAnimationFrame(updatePositions));
 
+var items;
+
 // Generates the sliding pizzas when the page loads.
-// document.addEventListener('DOMContentLoaded', function() {
-//   var cols = 8;
-//   var s = 256;
-//   for (var i = 0; i < 200; i++) {
-//     var elem = document.createElement('img');
-//     elem.className = 'mover';
-//     elem.src = "images/pizza-xs.png";
-//     elem.style.height = "100px";
-//     elem.style.width = "73.333px";
-//     elem.basicLeft = (i % cols) * s;
-//     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-//     document.querySelector("#movingPizzas1").appendChild(elem);
-//   }
-//   requestAnimationFrame(updatePositions);
-// });
+document.addEventListener('DOMContentLoaded', function() {
+  var cols = 8;
+  var s = 256;
+  for (var i = 0; i < 30; i++) {
+    var elem = document.createElement('img');
+    elem.className = 'mover';
+    elem.src = "images/pizza-xs.png";
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
+    elem.basicLeft = (i % cols) * s;
+    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    document.querySelector("#movingPizzas1").appendChild(elem);
+  }
+  items = document.getElementsByClassName('mover');
+  requestAnimationFrame(updatePositions);
+});
 
 // requestAnimationFrame polyfill (https://gist.github.com/paulirish/1579671)
 (function() {
