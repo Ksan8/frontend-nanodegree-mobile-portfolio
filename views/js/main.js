@@ -532,14 +532,15 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', window.requestAnimationFrame(updatePositions));
 
-var items;
+var items, w, h;
 
-// Generates the sliding pizzas when the page loads.
-document.addEventListener('DOMContentLoaded', function() {
+function backgroundPizzas() {
   // get dimensions of viewport
-  var w = Math.max(document.documentElement.clientWidth || 0);
-  var h = Math.max(document.documentElement.clientHeight || 0);
+  w = Math.max(document.documentElement.clientWidth || 0);
+  h = Math.max(document.documentElement.clientHeight || 0);
   var totalPizzas = (Math.floor(w / 73.333)) * (Math.floor(h / 100));
+
+  // TODO: add event listener for resize; adjust w & h accordingly
 
   var cols = 8;
   var s = 256;
@@ -560,7 +561,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // since it is only on page load)
   updatePositions();
   // window.requestAnimationFrame(updatePositions);
-});
+}
+
+// Generates the sliding pizzas when the page loads.
+document.addEventListener('DOMContentLoaded', backgroundPizzas());
+// Recalculates # background pizzas when viewport is resized
+document.addEventListener('resize', backgroundPizzas());
 
 // requestAnimationFrame polyfill (https://gist.github.com/paulirish/1579671)
 (function() {
