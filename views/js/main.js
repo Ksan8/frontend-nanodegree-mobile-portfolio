@@ -406,7 +406,7 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.getElementById("pizzaSize").innerHTML = "Small";
+        document.querySelector("#pizzaSize").innerHTML = "Small";
         return;
       case "2":
         document.getElementById("pizzaSize").innerHTML = "Medium";
@@ -538,7 +538,8 @@ function backgroundPizzas() {
   // get dimensions of viewport
   w = Math.max(document.documentElement.clientWidth || 0);
   h = Math.max(document.documentElement.clientHeight || 0);
-  var totalPizzas = (Math.floor(w / 73.333)) * (Math.floor(h / 100));
+  // var totalPizzas = (Math.floor(w / 256)) * (Math.floor(h / 100));
+  var totalPizzas = 32;
 
   // TODO: add event listener for resize; adjust w & h accordingly
 
