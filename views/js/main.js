@@ -503,19 +503,20 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var allPizzas = [];
-  var factor1 = document.body.scrollTop / 1250;  // optimization: made this a variable outside loop
+  var valueArray = [];
+  var scrollT = document.body.scrollTop;
   var pizzaLength = items.length;
+  var i;
 
-  for (var i = 0; i < 5; i++) {
-    // var phase = Math.sin(factor1 + (i % 5));
-    // allPizzas.push(phase);
-    allPizzas.push(Math.sin(factor1 + i));
+  // fill array with the five values to be used
+  for (i = 0; i < 5; i++) {
+    valueArray.push(Math.sin((scrollT / 1250) + i));
   }
 
-  for (var j = 0; j < pizzaLength; j++) {
-    // items[j].style.left = items[j].basicLeft + 100 * allPizzas[j] + 'px';
-    items[j].style.transform = 'translateX(100px)';
+  for (i = 0; i < pizzaLength; i++) {
+    var phase = valueArray[i % 5];
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    // items[i].style.transform = 'translateX((100 * allPizzas[i])px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -529,15 +530,20 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', requestAnimationFrame(updatePositions));
+window.addEventListener('scroll', window.requestAnimationFrame(updatePositions));
 
 var items;
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+  // get dimensions of viewport
+  var w = Math.max(document.documentElement.clientWidth || 0);
+  var h = Math.max(document.documentElement.clientHeight || 0);
+  var totalPizzas = (Math.floor(w / 73.333)) * (Math.floor(h / 100));
+
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < totalPizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza-xs.png";
@@ -547,8 +553,13 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.getElementById("movingPizzas1").appendChild(elem);
   }
+
   items = document.getElementsByClassName('mover');
-  requestAnimationFrame(updatePositions);
+
+  // TODO: figure out if this needs to be in requestAnimationFrame (or not,
+  // since it is only on page load)
+  updatePositions();
+  // window.requestAnimationFrame(updatePositions);
 });
 
 // requestAnimationFrame polyfill (https://gist.github.com/paulirish/1579671)
