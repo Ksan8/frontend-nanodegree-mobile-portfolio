@@ -566,7 +566,7 @@ function backgroundPizzas() {
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', backgroundPizzas());
 // Recalculates # background pizzas when viewport is resized
-document.addEventListener('resize', backgroundPizzas());
+document.addEventListener('resize', window.requestAnimationFrame(backgroundPizzas));
 
 // requestAnimationFrame polyfill (https://gist.github.com/paulirish/1579671)
 (function() {
