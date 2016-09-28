@@ -530,7 +530,7 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-// can't use updatePositions because pizzas stop moving
+// can't use requestAnimationFrame because pizzas stop moving
 window.addEventListener('scroll', updatePositions);
 
 var items, w, h;
@@ -539,10 +539,8 @@ function backgroundPizzas() {
   // get dimensions of viewport
   w = Math.max(document.documentElement.clientWidth || 0);
   h = Math.max(document.documentElement.clientHeight || 0);
-  // var totalPizzas = (Math.floor(w / 256)) * (Math.floor(h / 100));
-  var totalPizzas = 32;
-
-  // TODO: add event listener for resize; adjust w & h accordingly
+  var totalPizzas = (Math.floor(w / 256)) * (Math.floor(h / 200));
+  // var totalPizzas = 32;
 
   var cols = 8;
   var s = 256;
@@ -559,8 +557,6 @@ function backgroundPizzas() {
 
   items = document.getElementsByClassName('mover');
 
-  // TODO: figure out if this needs to be in requestAnimationFrame (or not,
-  // since it is only on page load)
   requestAnimationFrame(updatePositions);
 }
 
