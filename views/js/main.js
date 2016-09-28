@@ -539,8 +539,7 @@ function backgroundPizzas() {
   // get dimensions of viewport
   w = Math.max(document.documentElement.clientWidth || 0);
   h = Math.max(document.documentElement.clientHeight || 0);
-  var totalPizzas = (Math.floor(w / 256)) * (Math.floor(h / 200));
-  // var totalPizzas = 32;
+  var totalPizzas = (Math.floor(w / 256)) * (Math.floor(h / 100));
 
   var cols = 8;
   var s = 256;
