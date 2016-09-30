@@ -516,7 +516,7 @@ function updatePositions() {
   for (i = 0; i < pizzaLength; i++) {
     var phase = valueArray[i % 5];
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    // items[i].style.transform = 'translateX((100 * allPizzas[i])px)';
+    // items[i].style.transform = 'translateX((100 * phase)px)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -539,10 +539,17 @@ function backgroundPizzas() {
   // get dimensions of viewport
   w = Math.max(document.documentElement.clientWidth || 0);
   h = Math.max(document.documentElement.clientHeight || 0);
-  var totalPizzas = (Math.floor(w / 256)) * (Math.floor(h / 100));
 
-  var cols = 8;
+  var movingPizzas = document.getElementById("movingPizzas1");
+
+  // adjust # columns to width of viewport (+ 2)
+  var cols = (Math.floor(w / 256) + 2);
+  console.log(cols);
   var s = 256;
+  var totalPizzas = cols * (Math.floor(h / 100));
+
+  console.log("width: ", screen.width, "height: ", screen.height); // write values to console
+
   for (var i = 0; i < totalPizzas; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
@@ -550,8 +557,9 @@ function backgroundPizzas() {
     elem.style.height = "100px";
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
+    console.log(i, i % cols, (i % cols) * s);  // write values to console
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.getElementById("movingPizzas1").appendChild(elem);
+    movingPizzas.appendChild(elem);
   }
 
   items = document.getElementsByClassName('mover');
