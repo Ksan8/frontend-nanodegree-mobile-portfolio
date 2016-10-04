@@ -456,10 +456,13 @@ var resizePizzas = function(size) {
     // use faster DOM selectors
     // create variable to cache elements outside for-loop
     var allContainers = document.getElementsByClassName("randomPizzaContainer");
+    // cache length
+    var length = allContainers.length;
+    // pull dimension & newwidth calculations outside loop (to fix forced reflow)
+    var dx = determineDx(allContainers[0], size);
+    var newwidth = (allContainers[0].offsetWidth + dx) + 'px';
 
-    for (var i = 0; i < allContainers.length; i++) {
-      var dx = determineDx(allContainers[i], size);
-      var newwidth = (allContainers[i].offsetWidth + dx) + 'px';
+    for (var i = 0; i < length; i++) {
       allContainers[i].style.width = newwidth;
     }
   }
