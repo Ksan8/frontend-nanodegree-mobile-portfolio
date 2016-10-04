@@ -30,25 +30,26 @@ Upon load, user sees randomly generated pizzas with different toppings, as well 
 * in changePizzaSizes function:
   * cached element array and dimension calculations outside loop in local variables
 * in updatePositions function:
-  * created valueArray variable to hold the 5  values needed (calculated in a separate for-loop)
+  * created valueArray variable to hold the 5 values needed (calculated in a separate for-loop)
   * cached scrollTop and items.length in variables outside loop
   * used the transform translateX (which is faster) instead of style.left
 * moved the creation of the sliding pizzas outside the 'DOMContentLoaded' event listener and into a function named backgroundPizzas
-* declared global variable items; line 549
+* declared global variable items; line 550
 * in backgroundPizzas function:
   * created variables for the width and height of the viewport so that an appropriate number of pizzas (and not too many) could be created
   * adjusted the number of columns (cols) to the width of the viewport + 2
   * created variable totalPizzas to calculate the correct number of pizzas
   * cached pizza elements in the variable movingPizzas outside the for-loop
-  * used compressed and resized pizza image (images/pizza-xs.png); line 573
-  * used Math.ceil instead of Math.floor; line 579
+  * used compressed and resized pizza image (images/pizza-xs.png); line 574
+  * used elem.style.left (line 579) instead of elem.basicLeft, because using the translateX context of the transform property
+  * used Math.ceil instead of Math.floor; line 582
   * defined items (cached as global variable)
   * used requestAnimationFrame to speed performance of updatePositions function; line 587
 * added Paul Irish's requestAnimationFrame polyfill
 
 ####Optimizations in views/css/style.css:
 
-* added "backface-visibility: hidden" to mover class; line 36
+* added "backface-visibility: hidden" to mover class, plus vendor prefixes; line 36
 
 ###Usage of the task-runner Grunt
 Grunt is a task-runner that for this project was used to

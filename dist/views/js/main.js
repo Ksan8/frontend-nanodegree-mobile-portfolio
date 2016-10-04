@@ -407,7 +407,8 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        // use faster DOM selector
+        document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
         // use faster DOM selector
@@ -573,7 +574,9 @@ function backgroundPizzas() {
     elem.src = "images/pizza-xs.png";
     elem.style.height = "100px";
     elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
+    // change from elem.basicLeft to elem.style.left
+    // because using the translateX context of the transform property
+    elem.style.left = (i % cols) * s + 'px';
     console.log(i, i % cols, (i % cols) * s);  // write values to console
     // use Math.ceil instead of Math.floor
     elem.style.top = (Math.ceil(i / cols) * s) + 'px';
