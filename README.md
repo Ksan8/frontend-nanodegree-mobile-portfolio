@@ -5,21 +5,23 @@ The challenge in this project was to optimize an online portfolio for speed, in 
 Here is the original unoptimized repository: https://github.com/udacity/frontend-nanodegree-mobile-portfolio
 
 ###How to View This Page
-Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/index.html
+Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/dist/index.html
 
 ###Part 1: Optimize PageSpeed Insights score for index.html
 
 ####Optimizations:
 
-* used WebFont to speed font loading
-* inlined the CSS
-* minified print.css
+* used <a href="https://github.com/typekit/webfontloader">Web Font Loader</a> library to speed Google font loading
+* used Grunt cssmin to minify style.css and print.css
+* inlined style.css
 * specified media="print" for print.min.css
 * made the Google Analytics scripts asynchronous
-* resized and compressed pizzeria image (used Grunt)
+* resized and compressed pizzeria image (used grunt-responsive-images)
 
 ###Part 2: Optimize Frames per Second in pizza.html
-Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/views/pizza.html
+Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/dist/views/pizza.html
+
+Upon load, user sees randomly generated pizzas with different toppings, as well as background pizzas that move left to right upon scrolling. The size of the static pizzas change according to a slider with options for 'small', 'medium', or 'large'.
 
 ####Optimizations in views/js/main.js:
 
@@ -48,8 +50,23 @@ Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mo
 
 * added "backface-visibility: hidden" to mover class; line 36
 
-### Customization with Bootstrap
+###Usage of the task-runner Grunt
+Grunt is a task-runner that for this project was used to
+minify CSS files (<a href="https://github.com/gruntjs/grunt-contrib-cssmin">cssmin</a>) and JavaScript files (<a href="https://github.com/gruntjs/grunt-contrib-uglify">uglify</a>), as
+well as resize and compress images (<a href="https://github.com/andismith/grunt-responsive-images">responsive_images</a>) via <a href="http://www.imagemagick.org/script/index.php">ImageMagick</a>.
+
+Getting Started with <a href="http://gruntjs.com/getting-started">Grunt</a>.
+
+More <a href="https://github.com/javsalazar/grunt-boilerplate">specific instructions</a> on using Grunt for a Udacity project.
+
+###Customization with Bootstrap
 The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
 
 * <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
 * <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+
+###Author
+Kezia Wineberg
+
+###Contact
+keziaw@gmail.com
