@@ -5,7 +5,7 @@ The challenge in this project was to optimize an online portfolio for speed, in 
 Here is the original unoptimized repository: https://github.com/udacity/frontend-nanodegree-mobile-portfolio
 
 ###How to View This Page
-Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/index.html
+Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/dist/index.html
 
 ###Part 1: Optimize PageSpeed Insights score for index.html
 
@@ -19,7 +19,7 @@ Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/in
 * resized and compressed pizzeria image (used Grunt)
 
 ###Part 2: Optimize Frames per Second in pizza.html
-Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/views/pizza.html
+Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/dist/views/pizza.html
 
 ####Optimizations in views/js/main.js:
 
@@ -48,7 +48,10 @@ Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mo
 
 * added "backface-visibility: hidden" to mover class; line 36
 
-### Customization with Bootstrap
+###Usage of the task-runner Grunt
+
+
+###Customization with Bootstrap
 The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.
 
 * <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>

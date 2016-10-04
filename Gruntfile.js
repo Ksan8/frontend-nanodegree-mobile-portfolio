@@ -1,8 +1,3 @@
-/*  Grunt is a task-runner that for this project was used to
-minify CSS files (cssmin) and JavaScript files (uglify), as
-well as resize & compress images (responsive_images) via ImageMagick
-*/
-
 module.exports = function(grunt) {
 
   // Project configuration.
