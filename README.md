@@ -1,52 +1,51 @@
 ## Website Performance Optimization portfolio project
 
-Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+The challenge in this project was to optimize an online portfolio for speed, in particular, optimizing the critical rendering path to make the page render as quickly as possible.
 
-To get started, check out the repository and inspect the code.
+Here is the original unoptimized repository: https://github.com/udacity/frontend-nanodegree-mobile-portfolio
 
-### Getting started
+###How to View This Page
+Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/index.html
 
-####Part 1: Optimize PageSpeed Insights score for index.html
+###Part 1: Optimize PageSpeed Insights score for index.html
 
-Some useful tips to help you get started:
+####Optimizations:
 
-1. Check out the repository
-1. To inspect the site on your phone, you can run a local server
+* used WebFont to speed font loading
+* inlined the CSS
+* specified media="print" for print.css
+* made the Google Analytics scripts asynchronous
+* resized and compressed pizzeria image (used Grunt)
 
-  ```bash
-  $> cd /path/to/your-project-folder
-  $> python -m SimpleHTTPServer 8080
-  ```
+###Part 2: Optimize Frames per Second in pizza.html
+Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/views/pizza.html
 
-1. Open a browser and visit localhost:8080
-1. Download and install [ngrok](https://ngrok.com/) to the top-level of your project directory to make your local server accessible remotely.
+####Optimizations in views/js/main.js:
 
-  ``` bash
-  $> cd /path/to/your-project-folder
-  $> ./ngrok http 8080
-  ```
+* used compressed and resized pizza image (images/pizza-large.png); line 382
+* used faster DOM selectors throughout (e.g., getElementById instead of querySelector; getElementsByClassName instead of querySelectorAll)
+* in changePizzaSizes function:
+  * cached element array and dimension calculations outside loop in local variables
+* in updatePositions function:
+  * created valueArray variable to hold the 5  values needed (calculated in a separate for-loop)
+  * cached scrollTop and items.length in variables outside loop
+  * used the transform translateX (which is faster) instead of style.left
+* moved the creation of the sliding pizzas outside the 'DOMContentLoaded' event listener and into a function named backgroundPizzas
+* declared global variable items; line 549
+* in backgroundPizzas function:
+  * created variables for the width and height of the viewport so that an appropriate number of pizzas (and not too many) could be created
+  * adjusted the number of columns (cols) to the width of the viewport + 2
+  * created variable totalPizzas to calculate the correct number of pizzas
+  * cached pizza elements in the variable movingPizzas outside the for-loop
+  * used compressed and resized pizza image (images/pizza-xs.png); line 573
+  * used Math.ceil instead of Math.floor; line 579
+  * defined items (cached as global variable)
+  * used requestAnimationFrame to speed performance of updatePositions function; line 587
+* added Paul Irish's requestAnimationFrame polyfill
 
-1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
+####Optimizations in views/css/style.css:
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
-
-####Part 2: Optimize Frames per Second in pizza.html
-
-To optimize views/pizza.html, you will need to modify views/js/main.js until your frames per second rate is 60 fps or higher. You will find instructive comments in main.js. 
-
-You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
-
-### Optimization Tips and Tricks
-* [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
-* [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")
-* [Optimizing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/optimizing-critical-rendering-path.html "optimize the crp!")
-* [Avoiding Rendering Blocking CSS](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css.html "render blocking css")
-* [Optimizing JavaScript](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/adding-interactivity-with-javascript.html "javascript")
-* [Measuring with Navigation Timing](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/measure-crp.html "nav timing api"). We didn't cover the Navigation Timing API in the first two lessons but it's an incredibly useful tool for automated page profiling. I highly recommend reading.
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/eliminate-downloads.html">The fewer the downloads, the better</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-encoding-and-transfer.html">Reduce the size of text</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
-* <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
+* added "backface-visibility: hidden" to mover class; line 36
 
 ### Customization with Bootstrap
 The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstrap</a> framework. All custom styles are in `dist/css/portfolio.css` in the portfolio repo.

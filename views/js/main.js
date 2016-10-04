@@ -454,7 +454,7 @@ var resizePizzas = function(size) {
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
     // use faster DOM selectors
-    // create variable to cache elements outside for-loop
+    // create variable to cache element array outside loop
     var allContainers = document.getElementsByClassName("randomPizzaContainer");
     // cache length
     var length = allContainers.length;
@@ -557,7 +557,6 @@ function backgroundPizzas() {
   var cols = (Math.floor(w / 256) + 2);
   console.log("cols:", cols);
   var s = 256;
-  // var totalPizzas = cols * (Math.floor(h / 100));
   // calculate appropriate # of pizzas
   var totalPizzas = cols * (Math.floor(h / s));
 
