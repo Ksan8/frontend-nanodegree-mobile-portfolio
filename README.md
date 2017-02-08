@@ -5,7 +5,13 @@ The challenge in this project was to optimize an online portfolio for speed, in 
 Here is the original unoptimized repository: https://github.com/udacity/frontend-nanodegree-mobile-portfolio
 
 ###How to View This Page
-Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/dist/index.html
+Clone or download this repository, then open _index.html_ in your browser after starting a simple web server.
+
+The easiest way is to use SimpleHTTPServer if you already have Python installed (it comes pre-installed on most Mac OS X and Linux computers). In a terminal window, cd into the downloaded directory and run the following command:
+
+`python -m SimpleHTTPServer`
+
+After it starts, you can navigate to http://0.0.0.0:8000/index.html in your preferred browser.
 
 ###Part 1: Optimize PageSpeed Insights score for index.html
 
@@ -19,8 +25,6 @@ Go to: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/di
 * resized and compressed pizzeria image (used grunt-responsive-images)
 
 ###Part 2: Optimize Frames per Second in pizza.html
-Directly accessible at: https://ksan8.github.io/github.io-frontend-nanodegree-mobile-portfolio/dist/views/pizza.html
-
 Upon load, user sees randomly generated pizzas with different toppings, as well as background pizzas that move left to right upon scrolling. The size of the static pizzas change according to a slider with options for 'small', 'medium', or 'large'.
 
 ####Optimizations in views/js/main.js:
@@ -70,4 +74,4 @@ The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstra
 Kezia Wineberg
 
 ###Contact
-keziaw@gmail.com
+ksan8@protonmail.com
